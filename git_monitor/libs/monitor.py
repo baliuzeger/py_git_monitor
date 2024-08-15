@@ -1,10 +1,12 @@
 import logging
 from git import Repo
+import sys
 from dotenv import dotenv_values
 
 fname_config = ".git_monitor"
 logger = logging.getLogger("git_monitor")
-stream_handler = logging.StreamHandler()
+logger.setLevel(logging.INFO)
+stream_handler = logging.StreamHandler(sys.stdout)
 logger.addHandler(stream_handler)
 
 

@@ -31,4 +31,4 @@ Then everytime you `import` or `reload` the *package project*, `git-monitor` wil
 ```python
 from git_monitor import logger
 ```
-the messages of `git-monitor` are directed to this `logger`, which is a python native `logging.Logger` and an `logging.StreamHandler` has already been added to.
+the messages of `git-monitor` are directed to this `logger`, which is a python native `logging.Logger` and an `logging.StreamHandler` has already been added to. The logging level is `INFO`, and the `StreamHandler` uses `sys.stdout`.
