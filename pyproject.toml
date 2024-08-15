@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "git-monitor"
-version = "0.1.4"
+version = "0.1.5"
 description = "Automatic print the git status of the package your are developing."
 authors = ["bali <baliuzeger@gmail.com>"]
 readme = "README.md"

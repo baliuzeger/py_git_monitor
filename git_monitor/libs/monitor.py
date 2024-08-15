@@ -1,6 +1,7 @@
 import logging
 from git import Repo
 import sys
+import os
 from dotenv import dotenv_values
 
 fname_config = ".git_monitor"
@@ -18,14 +19,19 @@ class Monitor:
 
     @classmethod
     def by_env(cls, name):
-        config = dotenv_values(fname_config)
-        if name in config:
-            try:
-                monitor = cls(config[name], name)
-                monitor.print_status()
-            except Exception as e:
-                logger.info(e)
-            return monitor
+        if os.path.isfile(fname_config):
+            config = dotenv_values(fname_config)
+            if name in config:
+                try:
+                    monitor = cls(config[name], name)
+                    monitor.print_status()
+                except Exception as e:
+                    logger.info(e)
+                return monitor
+            else:
+                logger.debug(f"package name {name} not in {fname_config}.")
+        else:
+            logger.debug(f"config file {fname_config} not found.")
 
     def print_status(self):
 
