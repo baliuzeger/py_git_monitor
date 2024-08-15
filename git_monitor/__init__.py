@@ -1,3 +1,2 @@
 from git_monitor.libs.monitor import Monitor
-
-foooo = "foooo"
+from git_monitor.libs.monitor import logger

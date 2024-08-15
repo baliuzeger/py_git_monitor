@@ -1,7 +1,11 @@
+import logging
 from git import Repo
 from dotenv import dotenv_values
 
 fname_config = ".git_monitor"
+logger = logging.getLogger("git_monitor")
+stream_handler = logging.StreamHandler()
+logger.addHandler(stream_handler)
 
 
 class Monitor:
@@ -18,30 +22,30 @@ class Monitor:
                 monitor = cls(config[name], name)
                 monitor.print_status()
             except Exception as e:
-                print(e)
+                logger.info(e)
             return monitor
 
     def print_status(self):
 
-        print(f"Project {self.name} status:\n")
+        logger.info(f"Project {self.name} status:\n")
 
         if self.repo.head.is_detached:
-            print("On Detached head.")
+            logger.info("On Detached head.")
         else:
-            print(f"On branch {self.repo.active_branch}.")
+            logger.info(f"On branch {self.repo.active_branch}.")
 
-        print(f"Current commit- {self.repo.head.object.hexsha}")
-        print(f"Message-\n{self.repo.head.commit.message}")
+        logger.info(f"Current commit- {self.repo.head.object.hexsha}")
+        logger.info(f"Message-\n{self.repo.head.commit.message}")
 
         if len(self.repo.untracked_files) > 0:
-            print("\nuntracked-")
+            logger.info("\nuntracked-")
             for file in self.repo.untracked_files:
-                print(file)
+                logger.info(file)
 
         diffs = self.repo.index.diff(None)
         if len(diffs) > 0:
-            print("\nmodified-")
+            logger.info("\nmodified-")
             for d in diffs:
-                print(d.a_path)
+                logger.info(d.a_path)
 
-        print("\n")
+        logger.info("\n")
