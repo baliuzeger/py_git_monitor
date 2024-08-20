@@ -25,7 +25,7 @@ import git_monitor
 git_monitor.Monitor.by_env("<pkg-nm-1>")
 ```
 
-Then everytime you `import` or `reload` the *package project*, `git-monitor` will print the git status, including current branch, commit hash, untracked files and modified files.
+Then everytime you `import` or `reload` the *package project* under the *experiment project*, `git-monitor` will print the git status, including current branch, commit hash, untracked files and modified files.
 
 ## logger
 ```python
